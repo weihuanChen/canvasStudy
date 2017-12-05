@@ -40,6 +40,13 @@
 				var alpha = (Math.floor(Math.random() * 10) + 1) / 10 / 2;//透明度
 				this.color = "rgba(255,255,255,"+alpha+")";
 			}
+			function animate(){//清除画布
+				content.clearRect(0,0,WIDTH,HEIGHT);
+				for(var i in round){
+					round[i].move();
+				}
+				requestAnimationFrame(animate);//requestAnimationFrame专用于动画特效，保证其刷新率与屏幕一致（定时器性质）不断递归，制造出移动现象
+			}
 			Round_item.prototype.draw = function (){//画圆
 				content.fillStyle = this.color;//线条风格
 //				content.fillStyle = ;//线条风格
@@ -49,12 +56,19 @@
 				content.closePath();
 				content.fill();
 			};
-			
+			Round_item.prototype.move = function(){//移动函数
+				this.y -= 0.55;//移动速度
+				if(this.y<=-10){ //如果超屏幕，移动至最下方屏幕重新生成
+					this.y = HEIGHT+10;
+				}
+				this.draw();//保证小圆点总数不变
+			};
 			function init(){
 				for(var i = 0; i<initRoundPopulation;i++){
 					round[i] = new Round_item(i,Math.random() * WIDTH,Math.random() * HEIGHT);
 					round[i].draw();
 				}
+				animate();
 			}
 			init();
 		</script>
