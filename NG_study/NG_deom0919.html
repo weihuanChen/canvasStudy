@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+	<body>
+		<!--<div ng-app="">
+			<p>名字:<input type="text" ng-model="name"></p>
+			<h1>hello {{name}}</h1>
+		</div>-->
+		<!--<div ng-app="" ng-init="firstName='John'">
+			<p>姓名为<span ng-bind="firstName"></span></p>
+		</div>-->
+		<p>尝试修改以下表单.</p>
+		<div ng-app="myApp" ng-controller="myCtrl">
+			名:<input type="text" ng-model="firstName" /><br>
+			姓:<input type="text" ng-model="lastName" /><br>
+			<br >
+			姓名: {{firstName + " " + lastName}}
+		</div>
+		
+		<script>
+			var app = angular.module('myApp',[]);
+			app.controller('myCtrl',function($scope){
+				$scope.firstName = "John";
+				$scope.lastName = "Doe";
+			})
+			function outer(x){
+				return function(y){
+					return x * y
+				};
+			}
+			var multithree = outer(3);
+			console.log(multithree(2));
+		</script>
+	</body>
+
+	
+</html>
