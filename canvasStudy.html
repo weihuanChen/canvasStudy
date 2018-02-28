@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>title</title>
+		<style>
+			#canvas{
+				background:black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" >
+			当前浏览器不支持Canvas，请更换浏览器后再试
+		</canvas>
+		<script>
+			var canvas = document.getElementById("canvas");
+			//getContext创建上下文，2d（2d渲染上下文），webgl（3维渲染），webgl2（3维渲染）
+			var context = canvas.getContext("2d");
+			//canvas的高宽尽量在js和html中设置
+			var cx = canvas.width = 400;
+			var cy = canvas.height = 400;
+			
+//			context.beginPath();//创建一条路径
+//			context.arc(100,100,50,0,Math.PI*2,false);//创建圆弧
+//			context.fillStyle = '#fff'; //设定颜色需要在closepath前面设置,设置或者返回用于填充颜色渐变或模式
+//			context.shadowBlur = 20 //模糊指数
+//			context.shadowColor = '#fff'//模糊色
+//			context.closePath();		//回到起始点的路径				
+//			context.fill();//填充当前路径（绘图）
+
+
+//        context.beginPath();//打开路径（直线）
+//        context.moveTo(50,50);//直线的起始点
+//        context.lineTo(100,100);
+//        context.lineWidth = 10; //设置线宽
+//        context.lineCap = 'round'; //设置线的结束端点的角度
+//        context.strokeStyle = '#fff'; //设置描边颜色
+//        context.stroke();//描边
+//
+//       context.beginPath();
+//       context.fillStyle = '#fff';
+//       context.fillRect(10,10,100,100);//绘制一个实心矩形
+//       context.strokeStyle = '#fff';
+//       context.strokeRect(130,10,100,100);//绘制一个空心矩形
+		 
+//		 var grd = context.createLinearGradient(0,0,0,400);//创建线性渐变
+//		 grd.addColorStop(0,'rgb(255,0,0)');//规定颜色和结束位置
+//		 grd.addColorStop(0.2,'rgb(255,165,0)');
+//		 grd.addColorStop(0.3,'rgb(255,255,0)');
+//		 grd.addColorStop(0.5,'rgb(0,255,0)');
+//		 grd.addColorStop(0.7,'rgb(0,127,255)');
+//		 grd.addColorStop(0.9,'rgb(0,0,255)');
+//		 grd.addColorStop(1,'rgb(139,0,255)');
+//		 
+//		 context.fillStyle = grd;
+//		 context.fillRect(0,0,400,400);
+
+//      context.strokeStyle = 'white';
+//      context.strokeRect(5,5,50,25);
+//      context.scale(2,2); //缩放
+//      context.strokeRect(5,5,50,25);
+//      context.scale(2,2);
+//      context.strokeRect(5,5,50,25);
+		
+		context.fillStyle = 'white';
+		context.rotate(20*Math.PI/180);//旋转角度，以弧度计数
+		context.fillRect(70,30,200,100);
+		</script>
+	</body>
+</html>
