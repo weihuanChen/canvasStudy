@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#canvas{
+				background: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas">
+			
+		</canvas>
+		<script>
+			var canvas = document.getElementById('canvas'),
+			ctx = canvas.getContext('2d'),
+			WIDTH = canvas.width = document.documentElement.clientWidth,//设置屏幕宽为画布的宽度
+			HEIGHT = canvas.height = document.documentElement.clientHeight,//设置画布高为。。。。
+			para = {
+				num:100,
+				color:false,//颜色 为false就随机渐变颜色
+				r:0.9,//圆形每次增加的半径
+				o:0.09,//判断圆消失的条件,数值越大消失的越快
+				a:1
+			},
+			color,
+			color2,
+			round_arr = [];//存放圆形的数组
+			//设置鼠标事件，获得鼠标的坐标，并存放在round_arr中
+			window.onmousemove = function (event){
+				mouseX = event.clientX;
+				mouseY = event.clientY;
+				round_arr.push({
+					mouseX:mouseX,
+					mouseY:mouseY,
+					r:para.r,//半径增大的数值
+					o:1//数值越大消失的越快
+				})
+			};
+			
+			if(para.color){//不为false，就使用设置的颜色值
+		     color2 = para.color;
+		     
+			}else{
+				color = Math.random() * 360;
+			}
+			
+			function animate(){
+				if(!para.color){
+					color += .1;
+					color2 = 'hsl('+color+',100%,80%)';
+				}
+				ctx.clearRect(0,0,WIDTH,HEIGHT);//清除并重画
+				for(var i = 0;i<round_arr.length;i++){
+					ctx.fillStyle = color2;
+					ctx.beginPath();//开启画布
+					ctx.arc(round_arr[i].mouseX,round_arr[i].mouseY,round_arr[i].r,0,Math.PI * 2);
+					ctx.closePath();
+					ctx.fill();
+					round_arr[i].r += para.r;
+					round_arr[i].o -= para.o;
+					
+					if(round_arr[i].o <= 0){
+						round_arr.splice(i,1);
+						i--;
+					}
+				}
+				window.requestAnimationFrame(animate);
+			};
+			animate();
+		</script>
+	</body>
+</html>
